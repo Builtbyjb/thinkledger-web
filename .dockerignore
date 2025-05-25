@@ -1,0 +1,10 @@
+node_nodules
+scripts
+.venv
+input.css
+package.json
+package-lock.json
+.mypy_cache
+.ruff_cache
+.github
+tide
