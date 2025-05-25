@@ -2,7 +2,7 @@ import os
 from google_auth_oauthlib.flow import Flow
 import requests
 from typing import Optional, List
-from database.redis.redis import gen_redis
+from database.redis.redis import get_redis
 from utils.constants import TOKEN_INFO_URL, TOKEN_URL
 from utils.logger import log
 
@@ -108,49 +108,49 @@ def auth_session(session_id: str) -> bool:
   """
     Authenticates a user by verifying their access token and refreshing it if necessary.
   """
-  redis = gen_redis()
+  redis = get_redis()
   if redis is None: return False
-
-  try:
-    user_id = redis.get(session_id)
-    access_token = redis.get(f"access_token:{user_id}")
-  except Exception as e:
-    log.error(f"Error fetching user data or access token: {e}")
-    return False
-
-  if user_id is None:
-    log.info("User not found")
-    return False
-
-  if access_token is None:
-    log.info("Not access token")
-    return False
-
-  # Verify access token
-  if not verify_access_token(str(access_token)):
-    # If access token verification fails, try refreshing the token
-    try: refresh_token = redis.get(f"refresh_token:{user_id}")
+  with redis as r:
+    try:
+      user_id = r.get(session_id)
+      access_token = r.get(f"access_token:{user_id}")
     except Exception as e:
-      log.error(f"Error fetching refresh token: {e}")
+      log.error(f"Error fetching user data or access token: {e}")
       return False
 
-    if refresh_token is None:
-      log.error("No refresh token found")
+    if user_id is None:
+      log.info("User not found")
       return False
 
-    client_id = os.getenv("GOOGLE_SIGNIN_CLIENT_ID")
-    client_secret = os.getenv("GOOGLE_SIGNIN_CLIENT_SECRET")
-    if client_id is None: raise ValueError("Google signin client id not found")
-    if client_secret is None: raise ValueError("Google signin client secret not found")
-
-    new_access_token = refresh_access_token(str(refresh_token), client_id, client_secret)
-    if new_access_token is None:
-      log.error("Error refreshing access token")
+    if access_token is None:
+      log.info("Not access token")
       return False
 
-    try: redis.set(f"access_token:{user_id}", new_access_token)
-    except Exception as e:
-      log.error(f"Error setting new access token: {e}")
-      return False
+    # Verify access token
+    if not verify_access_token(str(access_token)):
+      # If access token verification fails, try refreshing the token
+      try: refresh_token = r.get(f"refresh_token:{user_id}")
+      except Exception as e:
+        log.error(f"Error fetching refresh token: {e}")
+        return False
 
-  return True
+      if refresh_token is None:
+        log.error("No refresh token found")
+        return False
+
+      client_id = os.getenv("GOOGLE_SIGNIN_CLIENT_ID")
+      client_secret = os.getenv("GOOGLE_SIGNIN_CLIENT_SECRET")
+      if client_id is None: raise ValueError("Google signin client id not found")
+      if client_secret is None: raise ValueError("Google signin client secret not found")
+
+      new_access_token = refresh_access_token(str(refresh_token), client_id, client_secret)
+      if new_access_token is None:
+        log.error("Error refreshing access token")
+        return False
+
+      try: r.set(f"access_token:{user_id}", new_access_token)
+      except Exception as e:
+        log.error(f"Error setting new access token: {e}")
+        return False
+
+    return True

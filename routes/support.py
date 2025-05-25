@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from web.content.faq import FAQs
-from web.content.support_categories import SUPPORT_CATEGORIES
+from content.faq import FAQs
+from content.support_categories import SUPPORT_CATEGORIES
 from utils.styles import BTN_STYLE_FULL, LINK_TEXT_STYLE, LINK_ICON_STYLE
 
 
 router = APIRouter(prefix="/support", tags=["Support"])
-templates = Jinja2Templates(directory="web/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 @router.get("/", status_code=status.HTTP_200_OK, response_model=None)

@@ -1,5 +1,5 @@
 from enum import Enum
-from database.redis.redis import gen_redis
+from database.redis.redis import get_redis
 
 
 class Tasks(Enum):
@@ -21,16 +21,14 @@ def add_tasks(value: str, user_id: str, priority: TaskPriority) -> bool:
     Value is a string containing the task function signature, and its arguments,
     separated by a colon e.g "func:arg1:arg2"
   """
-  redis = gen_redis()
-  if redis is None:
-    print("Unable to get redis @add_task > core_utils.py")
-    return False
-
-  # Add tasks to list head (LPUSH)
-  try: redis.lpush(f"tasks:{priority}:{user_id}", value)
-  except Exception as e:
-    print(f"Error adding task to queue: {e}")
-    return False
+  redis = get_redis()
+  if redis is None: return False
+  with redis as r:
+    # Add tasks to list head (LPUSH)
+    try: r.lpush(f"tasks:{priority}:{user_id}", value)
+    except Exception as e:
+      print(f"Error adding task to queue: {e}")
+      return False
 
   return True
 
