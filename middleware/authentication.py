@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 from typing import Literal, Callable, Optional, Any, Tuple, Dict
 from functools import wraps
 from redis import Redis
-from database.redis.redis import gen_redis
+from database.redis.redis import get_redis
 from utils.auth_utils import auth_session
 
 
@@ -33,14 +33,15 @@ def auth_required(mode: AuthMode = "strict") -> Callable[..., Any]:
       if session_id is None or len(session_id) == 0:
         if mode == "strict": return RedirectResponse("/")
       else:
-        redis = gen_redis()
+        redis = get_redis()
         if redis is None: raise HTTPException(status_code=400, detail="Internal Server Error")
-        if mode == "strict":
-          is_auth = auth_session(session_id)
-          if not is_auth: return RedirectResponse("/")
-        username = get_name(session_id, redis)
-        if username is None: username = "John Doe"
-        request.state.username = username
+        with redis as r:
+          if mode == "strict":
+            is_auth = auth_session(session_id)
+            if not is_auth: return RedirectResponse("/")
+          username = get_name(session_id, r)
+          if username is None: username = "John Doe"
+          request.state.username = username
       return await func(request, *args, **kwargs)
     return wrapper
   return decorator

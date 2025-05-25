@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from web.middleware.authentication import auth_required
+from middleware.authentication import auth_required
 from utils.styles import BTN_STYLE_FULL
 
 
 router = APIRouter(tags=["Integrations"])
-templates = Jinja2Templates(directory="web/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 @router.get("/banking", status_code=status.HTTP_200_OK)

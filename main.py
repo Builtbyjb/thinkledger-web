@@ -35,8 +35,8 @@ app.include_router(integrations.router)
 app.include_router(plaid.router)
 app.include_router(join_waitlist.router)
 
-app.mount("/static", StaticFiles(directory="web/static"), name="static")
-templates = Jinja2Templates(directory="web/templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 
 # Health check
