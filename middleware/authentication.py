@@ -20,6 +20,7 @@ def get_name(session_id: str, redis: Redis) -> Optional[str]:
   except Exception as e:
     print(f"Error fetching user name or user id: {e}")
     return None
+
   if username is None: return None
   assert isinstance(username, str), "Username should be a string"
   return username
