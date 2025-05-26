@@ -1,6 +1,6 @@
 import { setActiveLink, handleSidebar } from "./utils.min.js";
 
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   setActiveLink();
   handleSidebar();
 
@@ -46,4 +46,4 @@ import { setActiveLink, handleSidebar } from "./utils.min.js";
       console.log(error);
     }
   });
-})();
+});

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "minify": "uglifyjs-folder ./web/static/scripts/ -eo ./web/static/dist"
+    "minify": "uglifyjs-folder ./static/scripts/ -eo ./static/dist"
   },
   "devDependencies": {
     "uglifyjs-folder": "^3.3.0"

@@ -12,7 +12,8 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/banking", status_code=status.HTTP_200_OK)
 # @auth_required(mode="strict")
 async def banking(request: Request) -> HTMLResponse:
-  username = request.state.username
+  # username = request.state.username
+  username = "John Doe"
   return templates.TemplateResponse(
     request=request,
     name="auth/banking.html",
@@ -23,7 +24,8 @@ async def banking(request: Request) -> HTMLResponse:
 @router.get("/google", status_code=status.HTTP_200_OK)
 # @auth_required(mode="strict")
 async def google(request: Request) -> HTMLResponse:
-  username = request.state.username
+  # username = request.state.username
+  username = "John Doe"
   # TODO: Check for google api scopes for visually scope grant confirmation
   return templates.TemplateResponse(
     request=request,

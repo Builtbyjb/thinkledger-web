@@ -23,7 +23,7 @@ async def sign_in(request: Request) -> RedirectResponse:
   #   samesite="lax"
   # )
   # return response
-  return RedirectResponse("/")
+  return RedirectResponse("/home")
 
 
 @router.get("/sign-out")

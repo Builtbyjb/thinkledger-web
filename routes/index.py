@@ -34,7 +34,8 @@ async def index(request: Request) -> Union[HTMLResponse, RedirectResponse]:
 @router.get("/home")
 # @auth_required(mode="strict")
 async def home(request: Request) -> HTMLResponse:
-  username = request.state.username
+  # username = request.state.username
+  username = "John Doe"
   return templates.TemplateResponse(
     request=request,
     name="auth/home.html",

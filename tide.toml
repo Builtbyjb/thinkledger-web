@@ -19,6 +19,7 @@ dir = [
   "./.mypy_cache",
   "./.vscode",
   "./.venv",
+  "./static/dist",
 ]
 file = []
 ext = []
