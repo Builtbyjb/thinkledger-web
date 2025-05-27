@@ -3,6 +3,7 @@ if __name__ == "__main__":
   import subprocess
 
   os_name = platform.system()
+  print("Operating System: ", os_name)
   # Install npm packages
   result = subprocess.run(["npm", "install"], capture_output=True, text=True)
   print(result)
