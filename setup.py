@@ -18,6 +18,7 @@ if __name__ == "__main__":
       """
       subprocess.run(unix_uv_cmd, shell=True, executable="/bin/bash")
       # install tide
+      # run a install script
       subprocess.run(
         ["curl", "-L" "-o", "tide", "https://github.com/Builtbyjb/tide/releases/tag/v0.1.0"],
         capture_output=True,
