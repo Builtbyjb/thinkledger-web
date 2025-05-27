@@ -16,7 +16,7 @@ if __name__ == "__main__":
         && pip install uv \
         && uv sync
       """
-      subprocess.run(unix_uv_cmd, shell=True, executable="/bin/bash")
+      subprocess.run(unix_uv_cmd, shell=True, executable="/bin/bash", capture_output=True)
       # install tide
       # run a install script
       subprocess.run(
