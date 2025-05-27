@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
 from routes import google, legal, support, user_auth, integrations, plaid, join_waitlist, index
 from dotenv import load_dotenv
-from database.postgres.postgres_db import create_db_and_tables
+# from database.postgres.postgres_db import create_db_and_tables
 from middleware.rate_limiter import RateLimiter
 from fastapi.templating import Jinja2Templates
 from typing import Any
@@ -17,7 +17,7 @@ load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> Any:
-  create_db_and_tables()
+  # create_db_and_tables()
   yield
 
 app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
