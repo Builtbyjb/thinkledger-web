@@ -1,9 +1,4 @@
-/*
-Each form element appears more than onces hence document.querySelectorAll.
-Wraping everything in a global function improves minification.
-*/
-
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   const joinWaitlistBtns = document.querySelectorAll(
     "#display-join-waitlist-form",
   );
