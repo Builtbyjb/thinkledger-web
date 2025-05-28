@@ -9,22 +9,21 @@ if __name__ == "__main__":
     # Install npm packages
     subprocess.run(["npm", "install"])
     if os_name == "Darwin" or os_name == "Linux":
-      subprocess.run(["python3", "-m", "venv", ".venv"])
       # Install uv
-      unix_uv_cmd = """
-        source .venv/bin/activate \
-        && pip install uv \
-        && uv sync
-      """
-      subprocess.run(unix_uv_cmd, shell=True, executable="/bin/bash", capture_output=True)
-      # install tide
-      # run a install script
       subprocess.run(
-        ["curl", "-L" "-o", "tide", "https://github.com/Builtbyjb/tide/releases/tag/v0.1.0"],
-        capture_output=True,
-        text=True
+        "curl -LsSf https://astral.sh/uv/install.sh | sh",
+        shell=True,
+        executable="/bin/bash"
+        )
+      subprocess.run("uv sync", shell=True, executable="/bin/bash", capture_output=True)
+      # install tide
+      subprocess.run(
+        "curl -L -o tide https://github.com/Builtbyjb/tide/releases/tag/v0.1.0",
+        shell=True,
+        executable="/bin/bash"
         )
       # TODO: Add tide to path
+      # run a install script
     elif os_name == "Windows":
       subprocess.run(["pip", "install", "uv"], capture_output=True, text=True)
     else: print("Unable to determine operating system.")
