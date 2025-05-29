@@ -20,7 +20,7 @@ from pydantic import BaseModel
 from typing import Optional
 from database.postgres.postgres_db import get_db
 from database.postgres.postgres_schema import Institution, Account
-from utils.core_utils import add_tasks, TaskPriority, Tasks
+from utils.tasks import add_tasks, TaskPriority, Tasks
 from sqlmodel import select, Session
 from fastapi import BackgroundTasks
 from utils.logger import log
