@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
   total = 6
   os_name = platform.system()
-  print("Setting up thinkledger for operating system: ", os_name)
+  print("Setting up thinkledger")
 
   try:
     progress_bar(1, total)
@@ -35,8 +35,8 @@ if __name__ == "__main__":
 
       # Install dependencies
       subprocess.run(
-         "uv sync",
-         shell=True,
+        "uv sync",
+        shell=True,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
         executable="/bin/bash")
@@ -51,13 +51,27 @@ if __name__ == "__main__":
 
     elif os_name == "Windows":
       # Install uv
+      subprocess.run(
+        'powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"',
+        shell=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.STDOUT)
       progress_bar(3, total)
-      # Run uv sync
+
+      # Install dependencies
+      subprocess.run(
+        "uv sync",
+        shell=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.STDOUT)
       progress_bar(4, total)
+
       # Install tide
       progress_bar(5, total)
 
-    else: print("Unable to determine operating system.")
+    else:
+      print("Unable to determine operating system.")
+      sys.exit(1)
 
   except FileNotFoundError as f_err:
     print(f_err)
@@ -71,3 +85,4 @@ if __name__ == "__main__":
 
   # Progress_bar
   print("\nSetup complete. Run 'tide run dev --watch' to get started")
+  sys.exit(0)

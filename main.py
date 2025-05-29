@@ -43,7 +43,7 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/ping")
 async def ping() -> JSONResponse:
   env_check = "Good" if os.getenv("ENV_CHECK") else "Bad"
-  return JSONResponse( content={ "env_check": env_check, "response": "pong" }, status_code=200)
+  return JSONResponse(content={"env_check": env_check, "response": "pong"}, status_code=200)
 
 
 # Handles page not found
