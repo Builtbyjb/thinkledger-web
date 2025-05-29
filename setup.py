@@ -9,7 +9,7 @@ if __name__ == "__main__":
   import subprocess
   import sys
 
-  total = 6
+  total = 5
   os_name = platform.system()
   print("Setting up thinkledger")
 
@@ -48,6 +48,7 @@ if __name__ == "__main__":
       #   shell=True,
       #   executable="/bin/bash")
       progress_bar(5, total)
+      print("\nSetup complete. Quick start: DEBUG=2 python3 main.py")
 
     elif os_name == "Windows":
       # Install uv
@@ -68,6 +69,7 @@ if __name__ == "__main__":
 
       # Install tide
       progress_bar(5, total)
+      print("\nSetup complete. Quick start: set DEBUG=2 && python main.py")
 
     else:
       print("Unable to determine operating system.")
@@ -81,8 +83,5 @@ if __name__ == "__main__":
     print(e)
     sys.exit(1)
 
-  progress_bar(6, total)
-
   # Progress_bar
-  print("\nSetup complete. Run 'tide run dev --watch' to get started")
   sys.exit(0)
