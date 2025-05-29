@@ -2,8 +2,8 @@ root_dir = "."
 
 [command]
 dev = [
-  "DEBUG=2 python3 main.py",
-  # "ngrok http --url=admittedly-adequate-scorpion.ngrok-free.app 3000",
+  "DEBUG=1 python3 main.py",
+  "ngrok http --url=admittedly-adequate-scorpion.ngrok-free.app 3000",
   "npm run minify",
   "npx tailwindcss -i ./static/input.css -o ./static/style.css --minify",
 ]

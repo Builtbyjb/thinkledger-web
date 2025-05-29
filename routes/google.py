@@ -33,8 +33,7 @@ def add_user_pg(db: Session, user_info: Any) -> None:
     name=user_info.get("name"),
     given_name=user_info.get("given_name"),
     family_name=user_info.get("family_name"),
-    picture=user_info.get("picture"),
-  )
+    picture=user_info.get("picture"))
   try:
     db.add(new_user)
     db.commit()
@@ -44,15 +43,8 @@ def add_user_pg(db: Session, user_info: Any) -> None:
     log.error(f"Error adding user to postgres database: {e}")
 
 
-def add_user_redis(
-  redis:Redis,
-  user_id:str,
-  session_id:str,
-  username:str,
-  email:str,
-  access_token:str,
-  refresh_token:Optional[str] = None
-) -> None:
+def add_user_redis( redis:Redis, user_id:str, session_id:str, username:str, email:str,
+                   access_token:str, refresh_token:Optional[str] = None) -> None:
   """
     Save user info to redis database
   """
@@ -103,8 +95,7 @@ async def google_sign_in_callback(
       "client_id": client_id,
       "client_secret": client_secret,
       "redirect_uri": redirect_url,
-      "grant_type": "authorization_code"
-    }
+      "grant_type": "authorization_code"}
     res = requests.post(TOKEN_URL, data=payload)
     token = res.json()
   except Exception as e:
@@ -116,8 +107,7 @@ async def google_sign_in_callback(
     user_info: Any = id_token.verify_oauth2_token(
       token["id_token"],
       google_requests.Request(),
-      client_id
-    )
+      client_id)
   except Exception as e:
     log.error(e)
     return JSONResponse(content=str(e), status_code=500)
@@ -155,8 +145,7 @@ async def google_sign_in_callback(
     path="/",
     secure=True,
     httponly=True,
-    samesite="lax"
-  )
+    samesite="lax")
   return response
 
 
@@ -260,8 +249,7 @@ async def google_service_token(request: Request) -> JSONResponse:
     path="/",
     secure=True,
     httponly=True,
-    samesite="lax"
-  )
+    samesite="lax")
   return response
 
 
