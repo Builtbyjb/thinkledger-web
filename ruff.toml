@@ -4,7 +4,7 @@ target-version = "py310"
 line-length = 100
 show-fixes = true
 
-select = [
+lint.select = [
   "F",      # Pyflakes
   "W6",
   "E71",
@@ -39,8 +39,9 @@ select = [
   "F841",   # Variable assigned to but never used
 ]
 
-extend-select = [
-  "N", # Pep8 naming convention
+lint.extend-select = [
+  "TCH", # Type checking
+  "N",   # Pep8 naming convention
   # "TD003", # Check for TODO comments
 ]
 
