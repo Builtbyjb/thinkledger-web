@@ -1,9 +1,8 @@
 name: tests
 
 on:
-  [push, pull_request]
-  # pull_request:
-  #   branches: [main, staging]
+  - push
+  - pull_request
 
 jobs:
   lint:

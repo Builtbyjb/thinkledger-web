@@ -3,8 +3,10 @@ preview = true
 target-version = "py312"
 line-length = 100
 show-fixes = true
+exclude = []
 
-lint.select = [
+[lint]
+select = [
   "F",      # Pyflakes
   "W6",
   "E71",
@@ -34,17 +36,14 @@ lint.select = [
   "RUF018", # Assignment-in-assert
   "RET503", # Implicit return type
   "RET504", # Unnecessary variable assignment before return
+  # "RET505",
   "ANN201", # Checks function return type
   "F401",   # Unused imports
   "F841",   # Variable assigned to but never used
 ]
-
-lint.extend-select = [
-  "TCH", # Type checking
-  "N",   # Pep8 naming convention
+extend-select = [
+  "TC003", # Type checking
+  "N",     # Pep8 naming convention
   # "TD003", # Check for TODO comments
 ]
-
-lint.ignore = [] # Ignore errors
-
-exclude = []
+ignore = [] # Ignore errors
