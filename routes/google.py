@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends, Response
 from fastapi.responses import RedirectResponse, JSONResponse
 from datetime import datetime, timedelta, timezone
-import os
+import os, json
 from redis import Redis
 import requests
 from google.oauth2 import id_token
@@ -18,6 +18,7 @@ from utils.constants import TOKEN_URL
 from utils.logger import log
 from fastapi import BackgroundTasks
 from pydantic import BaseModel
+from utils.context import DEBUG
 
 
 router = APIRouter(prefix="/google", tags=["Google"])
@@ -260,10 +261,18 @@ class SpreadsheetSignal(BaseModel):
 
 
 @router.post("/spreadsheet/signal")
-async def google_spreadsheet_signal(request:Request, redis:Redis = Depends(get_redis)) -> Response:
+async def google_spreadsheet_signal(
+  request:Request, redis:Redis = Depends(get_redis),
+  ) -> Response:
   """
   Handles google spreadsheet signals
   """
-  # Receives a spreadsheet_id, tmp_user_id, and an event.
+  data = await request.body()
+  signal = SpreadsheetSignal(**json.loads(data))
+  if DEBUG >= 1: print(signal)
+
+  # What do i need to add a task
+  # Get user id from redis with tmp user id
+  #
 
   return Response(status_code=200)
