@@ -194,13 +194,11 @@ async def plaid_access_token(
   bg.add_task(add_accounts_to_db, db, data, user_id)
 
   # Add transaction sync to user task queue
-  # access token holds the institution information
   value = f"{Tasks.setup_spreadsheet.value}:{access_token}"
   is_added = add_task(user_id, TaskPriority.HIGH.value, value)
   if is_added is False:
     log.error("Error adding tasks @plaid-access-token > plaid.py")
     return JSONResponse(content={"error": "Internal server error"}, status_code=500)
-
   return JSONResponse(content={"message": "Institution and Accounts linked"}, status_code=200)
 
 
