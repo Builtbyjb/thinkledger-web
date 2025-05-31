@@ -19,6 +19,7 @@ from utils.logger import log
 from fastapi import BackgroundTasks
 from pydantic import BaseModel
 from utils.context import DEBUG
+from utils.tasks import TaskPriority, Tasks, add_task
 
 
 router = APIRouter(prefix="/google", tags=["Google"])
@@ -270,9 +271,15 @@ async def google_spreadsheet_signal(
   data = await request.body()
   signal = SpreadsheetSignal(**json.loads(data))
   if DEBUG >= 1: print(signal)
-
-  # What do i need to add a task
-  # Get user id from redis with tmp user id
-  #
-
-  return Response(status_code=200)
+  try: user_id = await redis.get(f"spreadsheet:{signal.tmp_user_id}")
+  except Exception as e:
+    log.error(e)
+    return Response(status_code=500)
+  if user_id is None: return Response(status_code=400)
+  assert isinstance(user_id, str), "User id must be a string"
+  value = f"{Tasks.sync_transaction}:{signal.spreadsheet_id}"
+  is_added = add_task(user_id, TaskPriority.HIGH.value, value)
+  if is_added: return Response(status_code=200)
+  else:
+    log.error("Error adding task")
+    return Response(status_code=500)

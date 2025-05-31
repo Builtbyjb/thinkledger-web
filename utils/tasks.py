@@ -10,28 +10,23 @@ class Tasks(Enum):
 class TaskPriority(Enum):
   """
     HIGH priority tasks are tasks that require immediate user feedback.
-    LOW priority tasks are tasks that go on in the background without direct user input
+    LOW priority tasks are tasks that go on in the background without direct user input.
   """
   HIGH = "HIGH"
   LOW = "LOW"
 
 
-# Ideas:
-# I could manage complexity by creating a class and having custom functions for different tasks
-# takes in a task, a list of arguments, and user_id
-def add_tasks(value: str, user_id: str, priority: str) -> bool:
+def add_task(user_id: str, priority: str, value: str) -> bool:
   """
-    Adds a task to the core task queue.
-    Value is a string containing the task function signature, and its arguments,
-    separated by a colon e.g "func:arg1:arg2"
+    The value argument contains the action to perform and the variables needed to complete
+    action.
   """
   redis = get_redis()
   if redis is None: return False
   with redis as r:
-    # Add tasks to list head (LPUSH)
-    try: r.lpush(f"tasks:{priority}:{user_id}", value)
+    # Add tasks to the list head
+    try: r.lpush(f"task:{priority}:{user_id}", value)
     except Exception as e:
       print(f"Error adding task to queue: {e}")
       return False
-
   return True

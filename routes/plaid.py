@@ -20,7 +20,7 @@ from pydantic import BaseModel
 from typing import Optional
 from database.postgres.postgres_db import get_db
 from database.postgres.postgres_schema import Institution, Account
-from utils.tasks import add_tasks, TaskPriority, Tasks
+from utils.tasks import add_task, TaskPriority, Tasks
 from sqlmodel import select, Session
 from fastapi import BackgroundTasks
 from utils.logger import log
@@ -195,8 +195,8 @@ async def plaid_access_token(
 
   # Add transaction sync to user task queue
   # access token holds the institution information
-  value = f"{Tasks.sync_transaction.value}:{access_token}"
-  is_added = add_tasks(value, user_id, TaskPriority.HIGH.value)
+  value = f"{Tasks.setup_spreadsheet.value}:{access_token}"
+  is_added = add_task(user_id, TaskPriority.HIGH.value, value)
   if is_added is False:
     log.error("Error adding tasks @plaid-access-token > plaid.py")
     return JSONResponse(content={"error": "Internal server error"}, status_code=500)
