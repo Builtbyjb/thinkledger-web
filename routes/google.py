@@ -64,7 +64,7 @@ def add_user_redis( redis:Redis, user_id:str, session_id:str, username:str, emai
 
 
 @router.get("/callback/sign-in", response_model=None)
-async def google_sign_in_callback(
+async def sign_in_callback(
   request: Request,
   bg: BackgroundTasks,
   db: Session = Depends(get_db),
@@ -152,7 +152,7 @@ async def google_sign_in_callback(
 
 
 @router.get("/callback/services", response_model=None)
-async def google_service_callback(
+async def service_callback(
   request: Request, redis: Redis = Depends(get_redis)
   ) -> Union[JSONResponse, RedirectResponse]:
   """
@@ -221,7 +221,7 @@ class GoogleScopes(Enum):
 
 
 @router.get("/services")
-async def google_service_token(request: Request) -> JSONResponse:
+async def service_token(request: Request) -> JSONResponse:
   """
     Starts google service tokens oauth flow
   """
@@ -262,9 +262,7 @@ class SpreadsheetSignal(BaseModel):
 
 
 @router.post("/spreadsheet/signal")
-async def google_spreadsheet_signal(
-  request:Request, redis:Redis = Depends(get_redis),
-  ) -> Response:
+async def spreadsheet_signal(request:Request, redis:Redis = Depends(get_redis)) -> Response:
   """
   Handles google spreadsheet signals
   """
