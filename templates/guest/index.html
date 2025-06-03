@@ -9,24 +9,28 @@
 
 {% block body %}
 <main class="space-y-16">
-  <section>
+  <section class="bg-[#dceee0] p-8 pb-20">
     <div class="z-20 mb-4 w-[100%] sm:w-[90%] md:w-[90%] lg:w-[80%] 2xl:w-[70%] text-center mx-auto">
-      <h1 class="text-4xl font-bold mb-4 leading-[1.2]">
-        Keep Track of Your Business's Financial Health.
+      <h1 class="text-3xl font-bold mb-4 leading-[1.2]">
+        Keep Track of Your Business's Financial <span class="text-[#1f583e]">Health.</span>
       </h1>
       <p class="mb-8 text-lg">
         We make it easier and cheaper for eCommerce business owners like you to
         have a better understanding of your business's financial health.
       </p>
-      <p class="text-white mb-4">Join the waitlist to get early access.</p>
-      <div class="flex items-center gap-4 mx-auto w-fit">
+      <p class="text-[#1b1d1c] mb-6 italic">Join the waitlist to get early access.</p>
+      <div class="gap-4 mx-auto w-fit">
         {{ cta.call_to_action(btn_style_full) }}
         {{ sgn.sign_in(btn_style_outline) }}
       </div>
     </div>
   </section>
-
-  <section id="features">
+  <section>
+    <div class="absolute top-[32rem] ">
+      <img src="/static/assets/spreadsheet.svg" />
+    </div>
+  </section>
+  <section id="features" class="bg-[#e9fbff]">
     <div>
       <div class="w-full">
         <h2 class="text-2xl font-medium mb-8">More on what we offer</h2>

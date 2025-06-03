@@ -1,10 +1,10 @@
 {% extends "root.html" %}
 {% block description %}{% endblock %}
 {% block layout%}
-<div class="w-[90%] py-8 mx-auto sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[55%] relative z-20">
-  <nav>
+<div class=" ">
+  <nav class="bg-[#dceee0] p-8">
     <div class="flex items-center justify-between">
-      <div class="flex">
+      <div class="flex justify-around">
         <a href="/">
           <div class="flex items-center justify-center">
             <div class="flex h-[1rem] items-center">
@@ -40,9 +40,16 @@
           </div>
         </a>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-align-justify-icon lucide-align-justify">
+        <path d="M3 12h18" />
+        <path d="M3 18h18" />
+        <path d="M3 6h18" />
+      </svg>
     </div>
   </nav>
-  <div class="mt-16 mb-8 min-h-[50vh]">{% block body %} {% endblock %}</div>
+  <div class=" min-h-[50vh]">{% block body %} {% endblock %}</div>
   <footer class="mt-24">
     <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>

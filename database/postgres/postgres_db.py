@@ -7,22 +7,15 @@ from typing import Optional, Callable, Generator, Any
 
 load_dotenv()
 
-POSTGRES_URL = None 
+POSTGRES_URL = "os.getenv(”POSTGRES_URL”)"
 
 # os.getenv("POSTGRES_URL")
 
-<<<<<<< HEAD
-# Create SQLModel engine
-if POSTGRES_URL is not None:  engine = create_engine(POSTGRES_URL, echo=False)
-# else: sys.exit("Could not get postgres url from env variables")
-else: pass
-=======
 if DEBUG < 2:
   # Create SQLModel engine
   if POSTGRES_URL is not None:  engine = create_engine(POSTGRES_URL, echo=False)
   else: sys.exit("Could not get postgres url from env variables")
 
->>>>>>> bbf4b069bc6bd329a35bf1719b5aca9e90e60d40
 
 # Dependency to get DB session
 def get_db() -> Any:
