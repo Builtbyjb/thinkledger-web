@@ -26,26 +26,72 @@
       </div>
     </div>
   </section>
+
   <section>
     <div class="absolute top-[32rem] ">
       <img src="/static/assets/spreadsheet.svg" />
     </div>
   </section>
+
   <section id="features" class="bg-[#e9fbff]">
     <div>
       <div class="w-full">
         <h2 class="text-2xl font-medium mb-8">More on what we offer</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        {% for f in features %}
         <div class="p-4 border-2 border-gray-300 rounded-lg">
           <div class="flex items-center mb-4">
-            {{ icon.f_icon(f.icon) }}
-            <h3 class="text-xl font-medium ms-4">{{ f.title }}</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-database-icon lucide-database">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+              <path d="M3 12A9 3 0 0 0 21 12" />
+            </svg>
+            <h3 class="text-xl font-medium ms-4">Full Control of Financial Data</h3>
           </div>
-          <div>{{ f.description }}</div>
+          <p>
+            You’ll never risk losing access to critical financial data—it’s
+            securely stored in your own Google Drive, linked to the email address you
+            signed up with. This means you have full control over your records,
+            easy access from any device, and seamless file sharing with your accountant
+            or team whenever needed.
+          </p>
         </div>
-        {% endfor %}
+        <div class="p-4 border-2 border-gray-300 rounded-lg">
+          <div class="flex items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-book-open-icon lucide-book-open">
+              <path d="M12 7v14" />
+              <path
+                d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+            </svg>
+            <h3 class="text-xl font-medium ms-4">Automated Bookkeeping</h3>
+          </div>
+          <p>
+            We monitor your business transactions and automatically
+            create journal entries, generate financial statements, and send you email
+            reminders when accounts payable and accounts receivable are due.
+          </p>
+        </div>
+        <div class="p-4 border-2 border-gray-300 rounded-lg">
+          <div class="flex items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-chart-no-axes-column-icon lucide-chart-no-axes-column">
+              <line x1="18" x2="18" y1="20" y2="10" />
+              <line x1="12" x2="12" y1="20" y2="4" />
+              <line x1="6" x2="6" y1="20" y2="14" />
+            </svg>
+            <h3 class="text-xl font-medium ms-4">AI Powered Financial Analysis</h3>
+          </div>
+          <p>
+            We use Artificial Intelligence (AI) to analyze your financial
+            data, helping you identify issues and quickly access the information needed
+            to resolve them.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -56,15 +102,48 @@
         <h2 class="text-2xl mb-8 font-medium">Why you will love ThinkLedger</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        {% for b in benefits %}
         <div class="p-4 border-2 rounded-lg border-gray-300">
           <div class="flex items-center mb-4">
-            <i class="{{ b.icon }}"></i>
-            <h3 class="text-xl font-medium ms-4">{{ b.title }}</h3>
+            <!--TODO: icon <i class="icon"></i> -->
+            <h3 class="text-xl font-medium ms-4">Cost Savings</h3>
           </div>
-          <div>{{ b.description }}</div>
+          <p>
+            We lower labor costs by reducing the need for manual bookkeeping and by preventing costly mistakes
+            that could lead to penalties or financial losses.
+          </p>
         </div>
-        {% endfor %}
+        <div class="p-4 border-2 rounded-lg border-gray-300">
+          <div class="flex items-center mb-4">
+            <!--TODO: icon <i class="{{ b.icon }}"></i> -->
+            <h3 class="text-xl font-medium ms-4">Time Efficiency</h3>
+          </div>
+          <p>
+            We reduce the time spent on financial management by eliminating manual tasks, streamlining
+            processes, and improving efficiency.
+          </p>
+        </div>
+        <div class="p-4 border-2 rounded-lg border-gray-300">
+          <div class="flex items-center mb-4">
+            <!--TODO: icon <i class="{{ b.icon }}"></i> -->
+            <h3 class="text-xl font-medium ms-4">Real Time Financial Insights</h3>
+          </div>
+          <p>
+            Our software lets you run queries on your financial data, making it easy to retrieve specific
+            information and compare data across different accounting periods. This streamlines your
+            decision-making process, helping you act faster with accurate insights.
+          </p>
+        </div>
+        <div class="p-4 border-2 rounded-lg border-gray-300">
+          <div class="flex items-center mb-4">
+            <!--TODO: icon <i class="{{ b.icon }}"></i> -->
+            <h3 class="text-xl font-medium ms-4">Easy to Use</h3>
+          </div>
+          <p>
+            We use Google Workspace apps to seamlessly integrate with your workflow. Our software delivers
+            critical updates, lets you request information, and provides detailed business analysis through
+            a simple chat interface—helping you fully understand your business.
+          </p>
+        </div>
       </div>
     </div>
   </section>
