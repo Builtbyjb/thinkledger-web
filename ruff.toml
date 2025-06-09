@@ -1,11 +1,13 @@
 indent-width = 2
 preview = true
-target-version = "py310"
+target-version = "py312"
 line-length = 100
 show-fixes = true
+exclude = []
 
-lint.select = [
-  "F",  # Pyflakes
+[lint]
+select = [
+  "F",      # Pyflakes
   "W6",
   "E71",
   "E72",
@@ -31,22 +33,17 @@ lint.select = [
   "RET507", # Superfluous-else-continue
   "A",      # Builtin-variable-shadowing, builtin-argument-shadowing, builtin-attribute-shadowing
   "SIM105", # Suppressible-exception
-  "FURB110",# If-exp-instead-of-or-operator
   "RUF018", # Assignment-in-assert
   "RET503", # Implicit return type
-  "RET505", # Unnecessary else statements
   "RET504", # Unnecessary variable assignment before return
+  # "RET505",
   "ANN201", # Checks function return type
-  "F401", # Unused imports
-  "F841", # Variable assigned to but never used
+  "F401",   # Unused imports
+  "F841",   # Variable assigned to but never used
 ]
-
-lint.extend-select = [
-  "TCH", # Type checking
-  "N", # Pep8 naming convention
+extend-select = [
+  "TC003", # Type checking
+  "N",     # Pep8 naming convention
   # "TD003", # Check for TODO comments
 ]
-
-lint.ignore = [] # Ignore errors
-
-exclude = []
+ignore = [] # Ignore errors
