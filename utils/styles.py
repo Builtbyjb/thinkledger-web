@@ -1,5 +1,5 @@
 BTN_STYLE_FULL = """
-bg-[#0065F2]/90 border-2 border-[#0065FA]/90 hover:bg-blue-700 text-white font-medium py-2 px-4
+bg-[#1f583e]/90 border-2 border-[#1f583e]/90 hover:bg-blue-700 text-white font-medium py-2 px-4
 rounded-lg transition duration-200 ease-in-out transform hover:scale-110 cursor-pointer
 """
 
