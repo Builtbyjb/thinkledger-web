@@ -2,7 +2,7 @@
 FEATURES = [
   {
     "title": "Full Control of Financial Data",
-    "icon":  "fa-solid fa-database text-2xl",
+    "icon":  "database",
     "description": """You’ll never risk losing access to critical financial data—it’s
     securely stored in your own Google Drive, linked to the email address you
     signed up with. This means you have full control over your records,

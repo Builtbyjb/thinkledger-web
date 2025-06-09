@@ -2,6 +2,7 @@
 
 {% import "components/call_to_action.html" as cta %}
 {% import "components/sign_in.html" as sgn %}
+{% import "icons/icons.html" as icon %}
 
 {% block description %}
 <meta name="description" content="Thinkledger's home page" />
@@ -39,7 +40,7 @@
         {% for f in features %}
         <div class="p-4 border-2 border-gray-300 rounded-lg">
           <div class="flex items-center mb-4">
-            <i class="{{ f.icon }}"></i>
+            {{ icon.f_icon(f.icon) }}
             <h3 class="text-xl font-medium ms-4">{{ f.title }}</h3>
           </div>
           <div>{{ f.description }}</div>
