@@ -29,4 +29,4 @@ def time_format(time:float) -> str:
   elif t < 1:
     t = t * 1000
     t_rep = "us" # microseconds
-  return f"{t:.2f} {t_rep}"
+  return f"{t:.2f}{t_rep}"
