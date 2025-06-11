@@ -52,7 +52,7 @@ class PlaidResponse(BaseModel):
 
 
 @router.get("/link-token")
-async def plaid_link_token(request: Request, redis:Redis=Depends(get_redis)) -> JSONResponse:
+async def plaid_link_token(request: Request, redis: Redis=Depends(get_redis)) -> JSONResponse:
   """
     Get plaid link token to start the institution linking process
   """
@@ -67,7 +67,7 @@ async def plaid_link_token(request: Request, redis:Redis=Depends(get_redis)) -> 
   try: user_id = str(redis.get(session_id))
   except Exception as e:
     log.error(e)
-    return JSONResponse(content={"error":"Internal server error"}, status_code=500)
+    return JSONResponse(content={"error": "Internal server error"}, status_code=500)
 
   link_request = LinkTokenCreateRequest(
     user=LinkTokenCreateRequestUser(client_user_id=user_id),
@@ -99,11 +99,13 @@ async def plaid_link_token(request: Request, redis:Redis=Depends(get_redis)) -> 
   return JSONResponse(content={"linkToken": response["link_token"]}, status_code=200)
 
 
-def add_institutions_to_db(db:Session, data:PlaidResponse, access_token:str, user_id:str) -> None:
+def add_institutions_to_db(
+    db: Session, data: PlaidResponse, access_token: str, user_id: str
+    ) -> None:
   """
-    Check if institution already exists before adding a new institutions;
-    if it does, update the access token and remove old accounts information associated
-    with the institution.
+  Check if institution already exists before adding a new institutions;
+  if it does, update the access token and remove old accounts information associated
+  with the institution.
   """
   try:
     ins = db.get(Institution, data.institution.institution_id)
@@ -132,7 +134,7 @@ def add_institutions_to_db(db:Session, data:PlaidResponse, access_token:str, use
     log.error(f"Error saving institution: {e}")
 
 
-def add_accounts_to_db(db:Session, data:PlaidResponse, user_id:str) -> None:
+def add_accounts_to_db(db: Session, data: PlaidResponse, user_id: str) -> None:
   """
     Save accounts to the database
   """
@@ -159,8 +161,8 @@ async def plaid_access_token(
   request: Request,
   data: PlaidResponse,
   bg: BackgroundTasks,
-  db:Session = Depends(get_db),
-  redis:Redis= Depends(get_redis)
+  db: Session = Depends(get_db),
+  redis: Redis= Depends(get_redis)
 ) -> JSONResponse:
   """
     Get an institution's access token with a public token,
@@ -184,7 +186,7 @@ async def plaid_access_token(
   user_id = redis.get(session_id)
   if user_id is None:
     log.error("User not found")
-    return JSONResponse(content={"error": "User not found"},status_code=404)
+    return JSONResponse(content={"error": "User not found"}, status_code=404)
   if not isinstance(user_id, str): raise ValueError("User id must be a string")
   # print(access_token)
 

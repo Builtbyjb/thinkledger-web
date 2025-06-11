@@ -15,7 +15,9 @@ class RateLimiter(BaseHTTPMiddleware):
     super().__init__(app)
     self.rate_limit_records: Dict[str, int] = defaultdict(int)
 
-  async def dispatch(self, request:Request, c_next:Callable[..., Awaitable[Response]]) -> Response:
+  async def dispatch(
+      self, request: Request, c_next: Callable[..., Awaitable[Response]]
+      ) -> Response:
     if request.client is not None:
       client_ip = request.client.host
 

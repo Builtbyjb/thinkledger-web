@@ -14,6 +14,7 @@ select = [
   "E112",   # No-indented-block
   "E113",   # Unexpected-indentation
   "E203",   # Whitespace-before-punctuation
+  "E231",   # Missing whitespace after type hint
   "E272",   # Multiple-spaces-before-keyword
   "E275",   # Missing-whitespace-after-keyword
   "E303",   # Too-many-blank-lines
