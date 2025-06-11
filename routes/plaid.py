@@ -136,7 +136,7 @@ def add_institutions_to_db(
 
 def add_accounts_to_db(db: Session, data: PlaidResponse, user_id: str) -> None:
   """
-    Save accounts to the database
+  Save accounts to the database
   """
   try:
     for a in data.accounts:
