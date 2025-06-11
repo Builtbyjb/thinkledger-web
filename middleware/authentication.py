@@ -28,9 +28,9 @@ def get_name(session_id: str, redis: Redis) -> Optional[str]:
 
 
 def auth_required(mode: AuthMode = "strict") -> Callable[..., Any]:
-  def decorator(func:Callable[..., Any]) -> Callable[..., Any]:
+  def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
     @wraps(func)
-    async def wrapper(request:Request, *args:Tuple[Any], **kwargs:Dict[str, Any]) -> Any:
+    async def wrapper(request: Request, *args: Tuple[Any], **kwargs: Dict[str, Any]) -> Any:
       if DEBUG < 2:
         session_id = request.cookies.get("session_id")
         if session_id is None or len(session_id) == 0:

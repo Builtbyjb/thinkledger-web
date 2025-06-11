@@ -19,7 +19,7 @@ def handle_join_waitlist(firstname: str, lastname: str, email: str) -> None:
     "contacts": [{ "email": email, "first_name": firstname, "last_name": lastname}]
   }
 
-  try:response = sg.client.marketing.contacts.put(request_body=data)
+  try: response = sg.client.marketing.contacts.put(request_body=data)
   except Exception as e: log.error(f"Error adding user to waitlist: {e}")
 
   log.info(response.status_code, response.body)

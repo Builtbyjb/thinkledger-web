@@ -45,8 +45,8 @@ def add_user_pg(db: Session, user_info: Any) -> None:
     log.error(f"Error adding user to postgres database: {e}")
 
 
-def add_user_redis( redis:Redis, user_id:str, session_id:str, username:str, email:str,
-                   access_token:str, refresh_token:Optional[str] = None) -> None:
+def add_user_redis( redis: Redis, user_id: str, session_id: str, username: str, email: str,
+                   access_token: str, refresh_token: Optional[str] = None) -> None:
   """
     Save user info to redis database
   """
@@ -76,7 +76,7 @@ async def sign_in_callback(
   # Verify state parameter
   if request.query_params.get("state") != request.cookies.get("state"):
     log.error("Invalid state parameter")
-    return JSONResponse(content={"error":"Invalid state parameter"}, status_code=400)
+    return JSONResponse(content={"error": "Invalid state parameter"}, status_code=400)
 
   client_id = os.getenv("GOOGLE_SIGNIN_CLIENT_ID")
   client_secret = os.getenv("GOOGLE_SIGNIN_CLIENT_SECRET")
@@ -159,7 +159,7 @@ async def service_callback(
     Completes getting google service tokens oauth flow
   """
   if request.cookies.get("state") != request.query_params.get("state"):
-    return JSONResponse(content={"error":"Invalid state parameter"}, status_code=400)
+    return JSONResponse(content={"error": "Invalid state parameter"}, status_code=400)
 
   client_id = os.getenv("GOOGLE_SERVICE_CLIENT_ID")
   client_secret = os.getenv("GOOGLE_SERVICE_CLIENT_SECRET")
@@ -174,7 +174,7 @@ async def service_callback(
     code = request.query_params.get("code")
     if code is None:
       return JSONResponse(content={"error": "Authorization code not in request"}, status_code=400)
-    payload:Dict[str, str] = {
+    payload: Dict[str, str] = {
       "code": code,
       "client_id": client_id,
       "client_secret": client_secret,
@@ -195,7 +195,7 @@ async def service_callback(
   user_id = redis.get(session_id)
   if user_id is None:
     log.error("User not found")
-    return JSONResponse(content={"error":"Unauthorized"}, status_code=401)
+    return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
   if not isinstance(user_id, str): raise ValueError("User id must be a string")
 
   # print(token)
@@ -235,7 +235,7 @@ async def service_token(request: Request) -> JSONResponse:
   # TODO: this is a lazy fix. Ask for user consent
   scopes.append(GoogleScopes.script.value)
 
-  if len(scopes) == 0: return JSONResponse(content={"error":"No scopes provided"}, status_code=400)
+  if len(scopes) == 0: return JSONResponse(content={"error": "No scopes provided"}, status_code=400)
 
   # Get oauth service config
   config = service_auth_config(scopes)
@@ -256,13 +256,13 @@ async def service_token(request: Request) -> JSONResponse:
 
 
 class SpreadsheetSignal(BaseModel):
-  tmp_user_id:str
-  spreadsheet_id:str
-  event:str
+  tmp_user_id: str
+  spreadsheet_id: str
+  event: str
 
 
 @router.post("/spreadsheet/signal")
-async def spreadsheet_signal(request:Request, redis:Redis = Depends(get_redis)) -> Response:
+async def spreadsheet_signal(request: Request, redis: Redis = Depends(get_redis)) -> Response:
   """
   Handles google spreadsheet signals
   """
