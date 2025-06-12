@@ -12,14 +12,14 @@ test = []
 
 [exclude]
 dir = [
-  "./.git",
-  "./node_modules",
-  "./__pycache__",
-  "./.ruff_cache",
-  "./.mypy_cache",
-  "./.vscode",
-  "./.venv",
-  "./static/dist",
+  ".git",
+  "node_modules",
+  "__pycache__",
+  ".ruff_cache",
+  ".mypy_cache",
+  ".vscode",
+  ".venv",
+  "dist",
 ]
 file = []
 ext = []

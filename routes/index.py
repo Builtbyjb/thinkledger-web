@@ -2,8 +2,6 @@ from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from starlette.responses import RedirectResponse, HTMLResponse
 from middleware.authentication import auth_required
-from content.features import FEATURES
-from content.benefits import BENEFITS
 from utils.styles import BTN_STYLE_FULL, BTN_STYLE_OUTLINE, HOVER
 from utils.auth_utils import auth_session
 from utils.context import DEBUG
@@ -24,12 +22,7 @@ async def index(request: Request) -> Union[HTMLResponse, RedirectResponse]:
   return templates.TemplateResponse(
     request=request,
     name="guest/index.html",
-    context={
-      "features": FEATURES,
-      "benefits": BENEFITS,
-      "btn_style_full": BTN_STYLE_FULL,
-      "btn_style_outline": BTN_STYLE_OUTLINE
-    }
+    context={ "btn_style_full": BTN_STYLE_FULL, "btn_style_outline": BTN_STYLE_OUTLINE }
   )
 
 
