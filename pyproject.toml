@@ -1,5 +1,5 @@
 [project]
-name = "thinkledger"
+name = "thinkledger-web"
 version = "0.1.0"
 description = "A web interface for thinkledger"
 readme = "README.md"
