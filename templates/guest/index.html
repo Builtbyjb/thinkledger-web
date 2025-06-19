@@ -27,11 +27,7 @@
     </div>
   </section>
 
-  <section>
-    <div class="absolute top-[32rem] ">
-      <img src="/static/assets/spreadsheet.svg" class="hidden" />
-    </div>
-  </section>
+  <img src="/static/assets/spreadsheet.svg" class="absolute mx-auto left-[20rem] top-[32rem]" />
 
   <section id="features" class="bg-[#e9fbff] pt-20 px-2">
     <div>
@@ -263,13 +259,16 @@
     <!-- <Testimonials /> -->
   </section>
 
-  <section id="call-to-action" class="bg-[#dceee0] text-center p-4">
+  <section id="call-to-action" class="bg-[#dceee0] text-center p-12">
     <h2 class="text-3xl font-bold mb-4">
       Running a healthy business has never been <span class="text-[#1f583e]">easier.</span>
     </h2>
     <p class="mb-4">Join the waitlist to get early access today!</p>
     {{ cta.call_to_action(btn_style_full) }}
   </section>
+  <div class="relative border">
+    <img src="/static/assets/footer-image.svg" alt="" loading="lazy" class="mx-auto" />
+  </div>
 </main>
 {% endblock %}
 

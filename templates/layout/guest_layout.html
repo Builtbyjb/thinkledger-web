@@ -50,27 +50,17 @@
     </div>
   </nav>
   <div class=" min-h-[50vh]">{% block body %} {% endblock %}</div>
-  <footer class="mt-24">
+  <footer class="mt-24 bg-[#8cb396] border p-4">
+    <div class="my-4">
+      <h3 class="text-3xl font-bold">Thinkledger</h3>
+      <div class="flex items-center gap-2">
+        <a href="#"><img src="/static/assets/gmail-icon.svg" alt="gmail-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/linkedIn-icon.svg" alt="linkedIn-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/instagram-icon.png" alt="instagram-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/x-icon.svg" alt="x-icon" loading="lazy" /></a>
+      </div>
+    </div>
     <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Contact</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="/support#contact" class="flex hover:text-gray-300">
-              <i class="fa-solid fa-envelope me-2 text-2xl"></i>
-              Email
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Resources</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="/support" class="hover:text-gray-300"> Support </a>
-          </li>
-        </ul>
-      </div>
       <div>
         <h3 class="text-lg font-semibold mb-4">Legal</h3>
         <ul class="space-y-2">
@@ -85,9 +75,21 @@
           </li>
         </ul>
       </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Resources</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/support" class="hover:text-gray-300">Blog </a>
+          </li>
+          <li>
+            <a href="/support" class="hover:text-gray-300">Documentation</a>
+          </li>
+        </ul>
+      </div>
+
     </div>
     <div class="mt-8 pt-8 text-center">
-      <p class="text-sm">&copy; 2025 ThinkLedger. All rights reserved.</p>
+      <p class="text-sm"> 2025 Copyright &copy; ThinkLedger</p>
     </div>
   </footer>
 </div>
