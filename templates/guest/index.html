@@ -12,14 +12,14 @@
 <main class="space-y-16">
   <section class="bg-[#dceee0] p-8 pb-20">
     <div class="z-20 mb-4 w-[100%] sm:w-[90%] md:w-[90%] lg:w-[80%] 2xl:w-[70%] text-center mx-auto">
-      <h1 class="text-3xl font-bold mb-4 leading-[1.2]">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-[1.2]">
         Keep Track of Your Business's Financial <span class="text-[#1f583e]">Health.</span>
       </h1>
-      <p class="mb-8 text-lg">
+      <p class="mb-8 text-lg md:text-xl">
         We make it easier and cheaper for eCommerce business owners like you to
         have a better understanding of your business's financial health.
       </p>
-      <p class="text-[#1b1d1c] mb-6 italic">Join the waitlist to get early access.</p>
+      <p class="text-[#1b1d1c] mb-6 italic md:text-lg">Join the waitlist to get early access.</p>
       <div class="gap-4 mx-auto w-fit">
         {{ cta.call_to_action(btn_style_full) }}
         {{ sgn.sign_in(btn_style_outline) }}
@@ -27,12 +27,12 @@
     </div>
   </section>
 
-  <img src="/static/assets/spreadsheet.svg" class="absolute mx-auto left-[20rem] top-[32rem]" />
+  <!-- <img src="/static/assets/spreadsheet.svg" class="absolute mx-auto left-[20rem] top-[32rem]" /> -->
 
-  <section id="features" class="bg-[#e9fbff] pt-20 px-2">
+  <section id="features" class="bg-[#e9fbff] pt-20 px-2 md:p-8">
     <div>
       <div class="w-full">
-        <h2 class="text-3xl text-center font-medium mb-8">More on what we offer</h2>
+        <h2 class="text-3xl md:text-4xl text-center font-medium mb-8">More on what we offer</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         <div class="flex items-start gap-2">
@@ -104,10 +104,10 @@
   <section id="benefits" class="p-4">
     <div>
       <div class="w-full">
-        <h2 class="text-3xl mb-8 font-medium">Why you will love <span
+        <h2 class="text-3xl mb-8 font-medium text-center md:text-4xl">Why you will love <span
             class="text-[#1f583e] font-bold">ThinkLedger</span></h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:p-8">
         <div class="flex items-start gap-4">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
@@ -193,60 +193,64 @@
   <section class="p-3">
     <h3 class="text-3xl font-bold">We integrate seamlessly with google <span class="text-[#1f583e]">workspace</span>
     </h3>
-    <div class="flex items-start my-8 gap-2">
-      <img src="/static/assets/google-drive.svg" alt="google-drive" loding="lazy" class="" />
-      <div>
-        <h3 class="font-bold text-2xl mb-2">Google Drive</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt soluta dolorum est libero voluptatem!
-          Perferendis, tempore aperiam omnis provident pariatur voluptatem! Minima quibusdam qui fugit quos nemo!
-          Consequuntur, incidunt nisi.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:p-5">
+      <div class="flex items-start my-8 gap-2">
+        <img src="/static/assets/google-drive.svg" alt="google-drive" loding="lazy" class="" />
+        <div>
+          <h3 class="font-bold text-2xl mb-2">Google Drive</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt soluta dolorum est libero voluptatem!
+            Perferendis, tempore aperiam omnis provident pariatur voluptatem! Minima quibusdam qui fugit quos nemo!
+            Consequuntur, incidunt nisi.</p>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start my-8 gap-4">
-      <img src="/static/assets/google-chat.svg" alt="google-chat" loading="lazy" />
-      <div>
-        <h3 class="font-bold text-2xl mb-2">Google Chat</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus eum explicabo sed consequatur.
-          Molestias, ipsam necessitatibus. Itaque laborum at ullam atque facilis dolorum labore. Odit repudiandae dolore
-          nam ex praesentium!
-        </p>
+      <div class="flex items-start my-8 gap-4">
+        <img src="/static/assets/google-chat.svg" alt="google-chat" loading="lazy" />
+        <div>
+          <h3 class="font-bold text-2xl mb-2">Google Chat</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus eum explicabo sed consequatur.
+            Molestias, ipsam necessitatibus. Itaque laborum at ullam atque facilis dolorum labore. Odit repudiandae
+            dolore
+            nam ex praesentium!
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start gap-2 my-8">
-      <img src="/static/assets/google-sheets.svg" alt="google-sheet" loading="lazy" />
-      <div>
-        <h3 class="font-bold text-2xl mb-2">Google Sheets</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quia maxime beatae, officia sequi facere
-          tempore iusto nihil architecto quo nam rem quidem ut dolorum qui non officiis ducimus harum</p>
+      <div class="flex items-start gap-2 my-8">
+        <img src="/static/assets/google-sheets.svg" alt="google-sheet" loading="lazy" />
+        <div>
+          <h3 class="font-bold text-2xl mb-2">Google Sheets</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quia maxime beatae, officia sequi facere
+            tempore iusto nihil architecto quo nam rem quidem ut dolorum qui non officiis ducimus harum</p>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start my-8">
-      <img src="/static/assets/google-calendar.svg" alt="google-calendar" loading="lazy" class="w-[4.5rem]" />
-      <div>
-        <h3 class="font-bold text-2xl mb-2">Google Calendar</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum minima, veritatis aliquam ab omnis voluptate at
-          vero vel maiores blanditiis! Eum ea dolorem repudiandae itaque iste perspiciatis nemo? Animi, aperiam.</p>
+      <div class="flex items-start my-8">
+        <img src="/static/assets/google-calendar.svg" alt="google-calendar" loading="lazy" class="w-[4.5rem]" />
+        <div>
+          <h3 class="font-bold text-2xl mb-2">Google Calendar</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum minima, veritatis aliquam ab omnis voluptate
+            at
+            vero vel maiores blanditiis! Eum ea dolorem repudiandae itaque iste perspiciatis nemo? Animi, aperiam.</p>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start gap-2 my-8">
-      <img src="/static/assets/GMail.svg" alt="gmail-icon" loading="lazy" class="w-[4rem]" />
-      <div>
-        <h3 class="text-2xl font-bold mb-2">Gmail</h3>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, aspernatur facere non molestias animi
-          magnam id? Sed delectus praesentium expedita, recusandae fuga, facilis tenetur earum ex sit consequatur
-          repellat numquam?
-        </p>
+      <div class="flex items-start gap-2 my-8">
+        <img src="/static/assets/GMail.svg" alt="gmail-icon" loading="lazy" class="w-[4rem]" />
+        <div>
+          <h3 class="text-2xl font-bold mb-2">Gmail</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, aspernatur facere non molestias animi
+            magnam id? Sed delectus praesentium expedita, recusandae fuga, facilis tenetur earum ex sit consequatur
+            repellat numquam?
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="flex items-start gap-2 mt-8">
-      <img src="/static/assets/google-Docs.svg" alt="google-docs-icon" loading="lazy" />
-      <div>
-        <h3 class="text-2xl font-bold mb-2">Google Docs</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quasi, reiciendis consectetur nam at in
-          explicabo et a incidunt sapiente nesciunt pariatur dicta tempore adipisci, qui veniam, aliquam culpa
-          inventore.</p>
+      <div class="flex items-start gap-2 mt-8">
+        <img src="/static/assets/google-Docs.svg" alt="google-docs-icon" loading="lazy" />
+        <div>
+          <h3 class="text-2xl font-bold mb-2">Google Docs</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quasi, reiciendis consectetur nam at in
+            explicabo et a incidunt sapiente nesciunt pariatur dicta tempore adipisci, qui veniam, aliquam culpa
+            inventore.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -260,15 +264,15 @@
   </section>
 
   <section id="call-to-action" class="bg-[#dceee0] text-center p-12">
-    <h2 class="text-3xl font-bold mb-4">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
       Running a healthy business has never been <span class="text-[#1f583e]">easier.</span>
     </h2>
-    <p class="mb-4">Join the waitlist to get early access today!</p>
+    <p class="mb-4 md:text-lg">Join the waitlist to get early access today!</p>
     {{ cta.call_to_action(btn_style_full) }}
   </section>
-  <div class="relative border">
+  <!-- <div class="relative border">
     <img src="/static/assets/footer-image.svg" alt="" loading="lazy" class="mx-auto" />
-  </div>
+  </div> -->
 </main>
 {% endblock %}
 
