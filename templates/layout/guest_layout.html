@@ -4,7 +4,7 @@
 <div class=" ">
   <nav class="bg-[#dceee0] p-8">
     <div class="flex items-center justify-between">
-      <div class="flex justify-around">
+      <div class="flex justify-around gap-10">
         <a href="/">
           <div class="flex items-center justify-center">
             <div class="flex h-[1rem] items-center">
@@ -39,10 +39,42 @@
             </div>
           </div>
         </a>
+        <div class="flex gap-3 items-center ">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-command-icon lucide-command">
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+            </svg>
+            <select name="products" id="products">
+              <option value="products" class="bg-inherit text-inherit">Products</option>
+            </select>
+          </div>
+          <a class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-coffee-icon lucide-coffee">
+              <path d="M10 2v2" />
+              <path d="M14 2v2" />
+              <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+              <path d="M6 2v2" />
+            </svg>
+            <p>Blog</p>
+          </a>
+          <a class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-dollar-sign-icon lucide-dollar-sign">
+              <line x1="12" x2="12" y1="2" y2="22" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <p>Pricing</p>
+          </a>
+        </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-align-justify-icon lucide-align-justify">
+        class="lucide lucide-align-justify-icon lucide-align-justify md:hidden">
         <path d="M3 12h18" />
         <path d="M3 18h18" />
         <path d="M3 6h18" />
@@ -50,44 +82,47 @@
     </div>
   </nav>
   <div class=" min-h-[50vh]">{% block body %} {% endblock %}</div>
-  <footer class="mt-24">
-    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Contact</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="/support#contact" class="flex hover:text-gray-300">
-              <i class="fa-solid fa-envelope me-2 text-2xl"></i>
-              Email
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Resources</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="/support" class="hover:text-gray-300"> Support </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Legal</h3>
-        <ul class="space-y-2">
-          <li>
-            <a href="/privacy-policy" class="hover:text-gray-300"> Privacy Policy </a>
-          </li>
-          <li>
-            <a href="/terms-of-service" class="hover:text-gray-300"> Terms of Service </a>
-          </li>
-          <li>
-            <a href="/privacy-policy#cookie-policy" class="hover:text-gray-300 hover:cursor-pointer"> Cookie Policy </a>
-          </li>
-        </ul>
+  <footer class="mt-24 bg-[#8cb396] p-4">
+    <div class="my-4">
+      <h3 class="text-3xl font-bold md:text-4xl">Thinkledger</h3>
+      <div class="flex items-center gap-2">
+        <a href="#"><img src="/static/assets/gmail-icon.svg" alt="gmail-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/linkedIn-icon.svg" alt="linkedIn-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/instagram-icon.png" alt="instagram-icon" loading="lazy" /></a>
+        <a href="#"><img src="/static/assets/x-icon.svg" alt="x-icon" loading="lazy" /></a>
       </div>
     </div>
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4 md:text-xl">Legal</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/privacy-policy" class="hover:text-gray-300 md:text-lg"> Privacy Policy </a>
+          </li>
+          <li>
+            <a href="/terms-of-service" class="hover:text-gray-300 md:text-lg"> Terms of Service </a>
+          </li>
+          <li>
+            <a href="/privacy-policy#cookie-policy" class="hover:text-gray-300 hover:cursor-pointer md:text-lg"> Cookie
+              Policy </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4 md:text-xl">Resources</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/support" class="hover:text-gray-300 md:text-lg">Blog </a>
+          </li>
+          <li>
+            <a href="/support" class="hover:text-gray-300 md:text-lg">Documentation</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
     <div class="mt-8 pt-8 text-center">
-      <p class="text-sm">&copy; 2025 ThinkLedger. All rights reserved.</p>
+      <p class="text-sm md:text-md"> 2025 Copyright &copy; ThinkLedger</p>
     </div>
   </footer>
 </div>
