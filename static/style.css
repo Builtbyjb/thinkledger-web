@@ -385,6 +385,12 @@
   .max-w-7xl {
     max-width: var(--container-7xl);
   }
+  .max-w-\[60\%\] {
+    max-width: 60%;
+  }
+  .max-w-\[90\%\] {
+    max-width: 90%;
+  }
   .max-w-lg {
     max-width: var(--container-lg);
   }
@@ -560,6 +566,9 @@
   }
   .bg-\[\#0065FA\]\/90 {
     background-color: color-mix(in oklab, #0065FA 90%, transparent);
+  }
+  .bg-\[\#D3D3D3\] {
+    background-color: #D3D3D3;
   }
   .bg-\[\#dceee0\] {
     background-color: #dceee0;
@@ -886,6 +895,11 @@
       width: 90%;
     }
   }
+  .md\:max-w-\[70\%\] {
+    @media (width >= 48rem) {
+      max-width: 70%;
+    }
+  }
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -937,6 +951,11 @@
   .lg\:w-\[80\%\] {
     @media (width >= 64rem) {
       width: 80%;
+    }
+  }
+  .lg\:max-w-\[60\%\] {
+    @media (width >= 64rem) {
+      max-width: 60%;
     }
   }
   .lg\:grid-cols-2 {
