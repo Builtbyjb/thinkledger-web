@@ -582,6 +582,9 @@
   .bg-inherit {
     background-color: inherit;
   }
+  .bg-white {
+    background-color: var(--color-white);
+  }
   .stroke-\[\#262626\] {
     stroke: #262626;
   }
