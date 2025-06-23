@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from content.faq import FAQs
-from content.support_categories import SUPPORT_CATEGORIES
 from utils.styles import BTN_STYLE_FULL, LINK_TEXT_STYLE, LINK_ICON_STYLE
 
 
@@ -16,8 +14,6 @@ async def support(request: Request) -> HTMLResponse:
     request=request,
     name="guest/support.html",
     context={
-      "categories": SUPPORT_CATEGORIES,
-      "faqs": FAQs,
       "btn_style_full": BTN_STYLE_FULL,
       "link_text_style": LINK_TEXT_STYLE,
     }
