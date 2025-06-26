@@ -28,16 +28,17 @@
       </div>
     </section>
     <div class=" w-full flex justify-center">
-      <img src="/static/assets/spreadsheet.svg" class="absolute top-[95%]" />
+      <img src="/static/assets/spreadsheet.svg"
+        class="absolute top-[95%] min-[471px]:top-[90%] min-[501px]:top-[85%] min-[745px]:w-[60%] min-[745px]:top-[80%] min-[753px]:top-[75%] min-[769px]:top-[95%] min-[769px]:w-[50%] min-[785px]:w-[50%] min-[795px]:w-[45%] min-[835px]:top-[90%] min-[837px]:top-[80%] min-[913px]:w-[42%] min-[975px]:w-[40%] min-[1025px]:top-[95%] min-[1025px]:w-[35%] min-[1075px]:top-[90%] min-[1079px]:top-[80%] min-[1173px]:w-[30%] min-[1173px]:top-[85%] min-[1211px]:top-[82%] min-[1299px]:w-[28%] lg:w-[30%] lg:top-[100%] md:w-[40%] md:top-[100%] xl:top-[75%] xl:w-[25%]" />
     </div>
-    <section id="features" class="bg-[#e9fbff] pt-20 px-2 md:p-8">
+    <section id="features" class="bg-[#e9fbff] rounded-2xl pt-20 px-2 md:p-8 lg:max-w-[60%] md:max-w-[70%] mx-auto">
       <div>
-        <div class="lg:max-w-[60%] md:max-w-[70%]  mx-auto">
-          <h2 class="text-3xl md:text-4xl text-center font-medium mb-8">More on what we offer</h2>
+        <div class="">
+          <h2 class="text-3xl md:text-4xl text-center font-medium mb-8">More on what we <span
+              class="text-[#1F583E] font-bold">offer</span></h2>
         </div>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:max-w-[60%] md:max-w-[70%] mx-auto">
-          <div class="flex items-start gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 ">
+          <div class="flex items-start gap-2 ">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -269,7 +270,6 @@
     <section id="testimonials" class="">
       <!-- <Testimonials /> -->
     </section>
-    <div>
     <section id="call-to-action" class="bg-[#dceee0] text-center p-12">
       <h2 class="text-3xl md:text-4xl font-bold mb-4 lg:max-w-[60%] md:max-w-[70%] mx-auto">
         Running a healthy business has never been <span class="text-[#1f583e]">easier.</span>
@@ -277,9 +277,9 @@
       <p class="mb-4 md:text-lg">Join the waitlist to get early access today!</p>
       {{ cta.call_to_action(btn_style_full) }}
     </section>
-    <!-- <div class="absolute border">
-      <img src="/static/assets/footer-image.svg" alt="" loading="lazy" class="mx-auto" />
-    </div> -->
+    <div class="">
+      <img src="/static/assets/footer-image.svg" alt="" loading="lazy" class="mx-auto max-w-[28rem] max-h-[15rem]" />
+    </div>
 </main>
 {% endblock %}
 
