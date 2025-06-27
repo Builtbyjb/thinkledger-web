@@ -2,8 +2,8 @@
 {% block description %}{% endblock %}
 {% block layout%}
 <div class=" ">
-  <nav class="bg-[#dceee0] p-8">
-    <div class="flex items-center justify-between">
+  <nav class="bg-[#dceee0] w-[100%] p-8">
+    <div class="flex items-center justify-between lg:max-w-[60%] md:max-w-[70%] mx-auto">
       <div class="flex justify-around gap-10">
         <a href="/">
           <div class="flex items-center justify-center">
@@ -39,7 +39,7 @@
             </div>
           </div>
         </a>
-        <div class="flex gap-3 items-center max-md:hidden">
+        <div class="flex gap-3 items-center max-md:hidden ">
           <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -83,7 +83,7 @@
   </nav>
   <div class=" min-h-[50vh]">{% block body %} {% endblock %}</div>
   <footer class="mt-24 bg-[#8cb396] p-4">
-    <div class="my-4">
+    <div class="my-4 lg:max-w-[60%] md:max-w-[70%] mx-auto">
       <h3 class="text-3xl font-bold md:text-4xl">Thinkledger</h3>
       <div class="flex items-center gap-2">
         <a href="#"><img src="/static/assets/gmail-icon.svg" alt="gmail-icon" loading="lazy" /></a>
@@ -92,7 +92,7 @@
         <a href="#"><img src="/static/assets/x-icon.svg" alt="x-icon" loading="lazy" /></a>
       </div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:max-w-[60%] md:max-w-[70%] mx-auto">
       <div>
         <h3 class="text-lg font-semibold mb-4 md:text-xl">Legal</h3>
         <ul class="space-y-2">
