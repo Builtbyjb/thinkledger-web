@@ -46,7 +46,8 @@ async def ping() -> JSONResponse:
   env_check = "Good" if os.getenv("ENV_CHECK") else "Bad"
   return JSONResponse(
     content={ "env_check": env_check, "response": "pong" },
-    status_code=200)
+    status_code=200
+  )
 
 
 # Handles page not found
