@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends, Response
 from fastapi.responses import RedirectResponse, JSONResponse
 from datetime import datetime, timedelta, timezone
-import os
+import os, json
 from redis import Redis
 import requests
 from google.oauth2 import id_token
@@ -18,6 +18,8 @@ from utils.constants import TOKEN_URL
 from utils.logger import log
 from fastapi import BackgroundTasks
 from pydantic import BaseModel
+from utils.context import DEBUG
+from utils.tasks import TaskPriority, Tasks, add_task
 
 
 router = APIRouter(prefix="/google", tags=["Google"])
@@ -33,8 +35,7 @@ def add_user_pg(db: Session, user_info: Any) -> None:
     name=user_info.get("name"),
     given_name=user_info.get("given_name"),
     family_name=user_info.get("family_name"),
-    picture=user_info.get("picture"),
-  )
+    picture=user_info.get("picture"))
   try:
     db.add(new_user)
     db.commit()
@@ -44,15 +45,8 @@ def add_user_pg(db: Session, user_info: Any) -> None:
     log.error(f"Error adding user to postgres database: {e}")
 
 
-def add_user_redis(
-  redis:Redis,
-  user_id:str,
-  session_id:str,
-  username:str,
-  email:str,
-  access_token:str,
-  refresh_token:Optional[str] = None
-) -> None:
+def add_user_redis( redis: Redis, user_id: str, session_id: str, username: str, email: str,
+                   access_token: str, refresh_token: Optional[str] = None) -> None:
   """
     Save user info to redis database
   """
@@ -70,7 +64,7 @@ def add_user_redis(
 
 
 @router.get("/callback/sign-in", response_model=None)
-async def google_sign_in_callback(
+async def sign_in_callback(
   request: Request,
   bg: BackgroundTasks,
   db: Session = Depends(get_db),
@@ -82,7 +76,7 @@ async def google_sign_in_callback(
   # Verify state parameter
   if request.query_params.get("state") != request.cookies.get("state"):
     log.error("Invalid state parameter")
-    return JSONResponse(content={"error":"Invalid state parameter"}, status_code=400)
+    return JSONResponse(content={"error": "Invalid state parameter"}, status_code=400)
 
   client_id = os.getenv("GOOGLE_SIGNIN_CLIENT_ID")
   client_secret = os.getenv("GOOGLE_SIGNIN_CLIENT_SECRET")
@@ -103,8 +97,7 @@ async def google_sign_in_callback(
       "client_id": client_id,
       "client_secret": client_secret,
       "redirect_uri": redirect_url,
-      "grant_type": "authorization_code"
-    }
+      "grant_type": "authorization_code"}
     res = requests.post(TOKEN_URL, data=payload)
     token = res.json()
   except Exception as e:
@@ -116,8 +109,7 @@ async def google_sign_in_callback(
     user_info: Any = id_token.verify_oauth2_token(
       token["id_token"],
       google_requests.Request(),
-      client_id
-    )
+      client_id)
   except Exception as e:
     log.error(e)
     return JSONResponse(content=str(e), status_code=500)
@@ -155,20 +147,19 @@ async def google_sign_in_callback(
     path="/",
     secure=True,
     httponly=True,
-    samesite="lax"
-  )
+    samesite="lax")
   return response
 
 
 @router.get("/callback/services", response_model=None)
-async def google_service_callback(
+async def service_callback(
   request: Request, redis: Redis = Depends(get_redis)
   ) -> Union[JSONResponse, RedirectResponse]:
   """
     Completes getting google service tokens oauth flow
   """
   if request.cookies.get("state") != request.query_params.get("state"):
-    return JSONResponse(content={"error":"Invalid state parameter"}, status_code=400)
+    return JSONResponse(content={"error": "Invalid state parameter"}, status_code=400)
 
   client_id = os.getenv("GOOGLE_SERVICE_CLIENT_ID")
   client_secret = os.getenv("GOOGLE_SERVICE_CLIENT_SECRET")
@@ -183,7 +174,7 @@ async def google_service_callback(
     code = request.query_params.get("code")
     if code is None:
       return JSONResponse(content={"error": "Authorization code not in request"}, status_code=400)
-    payload:Dict[str, str] = {
+    payload: Dict[str, str] = {
       "code": code,
       "client_id": client_id,
       "client_secret": client_secret,
@@ -204,7 +195,7 @@ async def google_service_callback(
   user_id = redis.get(session_id)
   if user_id is None:
     log.error("User not found")
-    return JSONResponse(content={"error":"Unauthorized"}, status_code=401)
+    return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
   if not isinstance(user_id, str): raise ValueError("User id must be a string")
 
   # print(token)
@@ -230,7 +221,7 @@ class GoogleScopes(Enum):
 
 
 @router.get("/services")
-async def google_service_token(request: Request) -> JSONResponse:
+async def service_token(request: Request) -> JSONResponse:
   """
     Starts google service tokens oauth flow
   """
@@ -244,7 +235,7 @@ async def google_service_token(request: Request) -> JSONResponse:
   # TODO: this is a lazy fix. Ask for user consent
   scopes.append(GoogleScopes.script.value)
 
-  if len(scopes) == 0: return JSONResponse(content={"error":"No scopes provided"}, status_code=400)
+  if len(scopes) == 0: return JSONResponse(content={"error": "No scopes provided"}, status_code=400)
 
   # Get oauth service config
   config = service_auth_config(scopes)
@@ -260,22 +251,33 @@ async def google_service_token(request: Request) -> JSONResponse:
     path="/",
     secure=True,
     httponly=True,
-    samesite="lax"
-  )
+    samesite="lax")
   return response
 
 
 class SpreadsheetSignal(BaseModel):
-  tmp_user_id:str
-  spreadsheet_id:str
-  event:str
+  tmp_user_id: str
+  spreadsheet_id: str
+  event: str
 
 
 @router.post("/spreadsheet/signal")
-async def google_spreadsheet_signal(request:Request, redis:Redis = Depends(get_redis)) -> Response:
+async def spreadsheet_signal(request: Request, redis: Redis = Depends(get_redis)) -> Response:
   """
   Handles google spreadsheet signals
   """
-  # Receives a spreadsheet_id, tmp_user_id, and an event.
-
-  return Response(status_code=200)
+  data = await request.body()
+  signal = SpreadsheetSignal(**json.loads(data))
+  if DEBUG >= 1: print(signal)
+  try: user_id = redis.get(f"spreadsheet:{signal.tmp_user_id}")
+  except Exception as e:
+    log.error(e)
+    return Response(status_code=500)
+  if user_id is None: return Response(status_code=400)
+  assert isinstance(user_id, str), "User id must be a string"
+  value = f"{Tasks.sync_transaction.value}:{signal.spreadsheet_id}"
+  is_added = add_task(user_id, TaskPriority.HIGH.value, value)
+  if is_added: return Response(status_code=200)
+  else:
+    log.error("Error adding task")
+    return Response(status_code=500)

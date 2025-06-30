@@ -10,6 +10,7 @@ router = APIRouter()
 def handle_join_waitlist(firstname: str, lastname: str, email: str) -> None:
   sendgrid_api_key = os.getenv("SENDGRID_API_KEY")
   sendgrid_list_id = os.getenv("SENDGRID_LIST_ID")
+  # TODO: Better error handling
 
   sg = SendGridAPIClient(api_key=sendgrid_api_key)
 
@@ -18,8 +19,7 @@ def handle_join_waitlist(firstname: str, lastname: str, email: str) -> None:
     "contacts": [{ "email": email, "first_name": firstname, "last_name": lastname}]
   }
 
-  # TODO: Better error handling
-  try:response = sg.client.marketing.contacts.put(request_body=data)
+  try: response = sg.client.marketing.contacts.put(request_body=data)
   except Exception as e: log.error(f"Error adding user to waitlist: {e}")
 
   log.info(response.status_code, response.body)

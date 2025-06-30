@@ -1,11 +1,8 @@
 {% extends "layout/guest_layout.html" %}
-<!--  -->
 {% block title %} Support {% endblock %}
-<!--  -->
 {% block description %}
 <meta name="description" content="Get support for ThinkLedger software and services." />
 {% endblock %}
-<!--  -->
 {% block body %}
 <main class="space-y-16">
   <section>
@@ -15,93 +12,145 @@
   <section id="support-categories">
     <h2 class="text-2xl font-medium mb-8">Support Categories</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {% for c in categories %}
-      <a href="{{ c.link }}" class="">
+      <a href="/support/bookkeeping" class="">
         <div class="p-4 border-2 rounded-lg border-gray-300 h-full">
           <div class="mb-4 flex items-center">
-            <i class="{{ c.icon }}"></i>
-            <h3 class="font-medium text-xl ms-4">{{ c.title }}</h3>
+            <!-- TODO: add icon -->
+            <h3 class="font-medium text-xl ms-4">Bookkeeping</h3>
           </div>
           <div>
-            <p>{{ c.description }}</p>
+            <p>Learn how we handle your bookkeeping tasks</p>
           </div>
         </div>
       </a>
-      {% endfor %}
+      <a href="/support/financial-reports" class="">
+        <div class="p-4 border-2 rounded-lg border-gray-300 h-full">
+          <div class="mb-4 flex items-center">
+            <!-- TODO: add icon -->
+            <h3 class="font-medium text-xl ms-4">Financial Reports</h3>
+          </div>
+          <div>
+            <p>Generate and understand your financial reports</p>
+          </div>
+        </div>
+      </a>
+      <a href="/support/analytics-insights" class="">
+        <div class="p-4 border-2 rounded-lg border-gray-300 h-full">
+          <div class="mb-4 flex items-center">
+            <!-- TODO: add icon -->
+            <h3 class="font-medium text-xl ms-4">Analytics & Insights</h3>
+          </div>
+          <div>
+            <p>Get AI-powered insights about your finances</p>
+          </div>
+        </div>
+      </a>
     </div>
   </section>
   <section id="FAQ">
     <h2 class="text-2xl font-semibold mb-8">Frequently Asked Questions</h2>
     <div class="space-y-4">
-        {% for f in faqs %}
-        <div class="faq-item border-b-2 border-gray-300 rounded-lg overflow-hidden" >
-          <button class="flex justify-between items-center w-full p-4 text-left rounded-lg" aria-expanded="false" >
-            <h3 class="text-lg font-medium">{{ f.question }}</h3>
-            <svg class="faq-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" ></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4">
-            <p>{{ f.answer }}</p>
-          </div>
-        </div>
-        {% endfor %}
+      <details>
+        <summary class="text-lg font-medium">How does the software work?</summary>
+        <p>
+          AI-powered accounting software streamlines your bookkeeping by using advanced machine learning
+          algorithms. It automatically categorizes transactions, reconciles accounts, and generates
+          detailed financial reports. Plus, it continuously learns from your data to improve its accuracy
+          and efficiency over time, ensuring you get the most reliable insights into your financial health.
+        </p>
+      </details>
+      <details>
+        <summary class="text-lg font-medium">Is my financial data stored securely?</summary>
+        <p>
+          Yes, your financial data is securely stored in the Google Drive account linked to the email
+          address you used when creating your account. We organize your records in a dedicated folder
+          named "Thinkledger" to ensure both easy access and enhanced security.
+        </p>
+      </details>
+      <details>
+        <summary class="text-lg font-medium">"How accurate is the AI in categorizing transactions?</summary>
+        <p>
+          Our AI achieves over 95% accuracy in transaction categorization from day one. As it learns from
+          your corrections and patterns, accuracy typically improves to 98-99% within the first few months
+          of use.
+        </p>
+      </details>
+      <details>
+        <summary class="text-lg font-medium">Do I still need an accountant if I use your software?</summary>
+        <p>
+          While our AI handles day-to-day bookkeeping and reporting, we recommend maintaining a
+          relationship with an accounting professional for strategic advice, tax planning, and compliance
+          oversight. Many accountants use our platform to collaborate with clients more efficiently.
+        </p>
+      </details>
+      <details>
+        <summary class="text-lg font-medium">What kind of support do you offer?</summary>
+        <p>
+          We currently provide support exclusively via email. Our dedicated support team is ready to help
+          with any questions or concerns you may have, and we strive to respond promptly and thoroughly.
+          Please feel free to reach out to us at support@thinkledger.app for assistance.
+        </p>
+      </details>
     </div>
   </section>
   <section id="contact">
-      <h2 class="text-2xl font-medium mb-8">Contact Us</h2>
-      <p class="mb-6">
-        Our support team is available to assist you with any questions or
-        issues you may have.
-      </p>
-      <form class="space-y-4" id="contact-form-submit">
-        <div class="flex flex-col">
-          <label for="name" class="mb-2">
-              Name
-              <span class="text-red-500 ms-2">*</span>
-          </label>
-          <input required id="contact-form-name" name="name" type="text" class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
-          <p class="text-sm text-red-500"></p>
-        </div>
-        <div class="flex flex-col">
-          <label for="email" class="mb-2">
-            Email
-            <span class="text-red-500 ms-2">*</span>
-          </label>
-          <input required name="email" id="contact-form-email" type="email" class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
-          <p class="text-sm text-red-500"></p>
-        </div>
-        <div class="flex flex-col">
-          <label for="subject" class="mb-2">
-            Subject
-            <span class="text-red-500 ms-2">*</span>
-          </label>
-          <input required id="contact-form-subject" name="subject" type="text" class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
-          <p class="text-sm text-red-500"></p>
-        </div>
-        <div class="flex flex-col">
-          <label for="description" class="mb-2">
-            Description
-            <span class="text-red-500 ms-2">*</span>
-          </label>
-          <textarea required name="description" id="contact-form-description" class="min-h-[120px] text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent p-4" ></textarea>
-          <p class="text-sm text-red-500"></p>
-        </div>
-        <div class="flex items-center">
-          <input id="contact-form-privacy-policy" type="checkbox" required class="me-2" />
-          <p class="text-sm">
-            By clicking this you agree to our {{ " " }} <a href="/privacy-policy" class="{{ link_text_style }}"> privacy policy </a> .
-          </p>
-        </div>
-        <p class="text-sm text-red-500" id="contact-form-privacy-policy-error" ></p>
-        <button type="submit" class="{{ btn_style_full }}"> Send Message </button>
-      </form>
+    <h2 class="text-2xl font-medium mb-8">Contact Us</h2>
+    <p class="mb-6">
+      Our support team is available to assist you with any questions or
+      issues you may have.
+    </p>
+    <form class="space-y-4" id="contact-form-submit">
+      <div class="flex flex-col">
+        <label for="name" class="mb-2">
+          Name
+          <span class="text-red-500 ms-2">*</span>
+        </label>
+        <input required id="contact-form-name" name="name" type="text"
+          class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
+        <p class="text-sm text-red-500"></p>
+      </div>
+      <div class="flex flex-col">
+        <label for="email" class="mb-2">
+          Email
+          <span class="text-red-500 ms-2">*</span>
+        </label>
+        <input required name="email" id="contact-form-email" type="email"
+          class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
+        <p class="text-sm text-red-500"></p>
+      </div>
+      <div class="flex flex-col">
+        <label for="subject" class="mb-2">
+          Subject
+          <span class="text-red-500 ms-2">*</span>
+        </label>
+        <input required id="contact-form-subject" name="subject" type="text"
+          class="text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent h-[2rem] p-4" />
+        <p class="text-sm text-red-500"></p>
+      </div>
+      <div class="flex flex-col">
+        <label for="description" class="mb-2">
+          Description
+          <span class="text-red-500 ms-2">*</span>
+        </label>
+        <textarea required name="description" id="contact-form-description"
+          class="min-h-[120px] text-gray-900 bg-gray-200 border-2 rounded-lg focus:border-accent p-4"></textarea>
+        <p class="text-sm text-red-500"></p>
+      </div>
+      <div class="flex items-center">
+        <input id="contact-form-privacy-policy" type="checkbox" required class="me-2" />
+        <p class="text-sm">
+          By clicking this you agree to our {{ " " }} <a href="/privacy-policy" class="{{ link_text_style }}"> privacy
+            policy </a> .
+        </p>
+      </div>
+      <p class="text-sm text-red-500" id="contact-form-privacy-policy-error"></p>
+      <button type="submit" class="{{ btn_style_full }}"> Send Message </button>
+    </form>
   </section>
   <section id="resources">
   </section>
 </main>
 {% endblock %}
-<!--  -->
 {% block script %}
 <script type="module" src="/static/dist/support.min.js"></script>
 {% endblock %}

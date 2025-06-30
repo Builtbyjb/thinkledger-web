@@ -1,4 +1,5 @@
 import os
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -8,16 +9,16 @@ from database.postgres.postgres_db import create_db_and_tables
 from middleware.rate_limiter import RateLimiter
 from fastapi.templating import Jinja2Templates
 from typing import Any
+from utils.context import RELOAD, DEBUG
 from contextlib import asynccontextmanager
 
 
-# Load .env file
 load_dotenv()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> Any:
-  create_db_and_tables()
+  if DEBUG < 2: create_db_and_tables()
   yield
 
 app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
@@ -43,10 +44,18 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/ping")
 async def ping() -> JSONResponse:
   env_check = "Good" if os.getenv("ENV_CHECK") else "Bad"
-  return JSONResponse(content={"env_check": env_check, "response": "pong"}, status_code=200)
+  return JSONResponse(
+    content={ "env_check": env_check, "response": "pong" },
+    status_code=200
+  )
 
 
 # Handles page not found
 @app.exception_handler(404)
 async def not_found(request: Request, exc: Exception) -> HTMLResponse:
   return templates.TemplateResponse(request=request, name="not_found.html")
+
+
+if __name__ == "__main__":
+  reload = True if RELOAD == 1 else False
+  uvicorn.run("main:app", host="0.0.0.0", port=3000, log_level="info", reload=reload)

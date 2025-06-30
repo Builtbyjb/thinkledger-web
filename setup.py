@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
   total = 5
   os_name = platform.system()
-  print("Setting up thinkledger")
+  print("Setting up thinkledger for ", os_name)
 
   try:
     progress_bar(1, total)
@@ -43,10 +43,10 @@ if __name__ == "__main__":
       progress_bar(4, total)
 
       # Install tide
-      # subprocess.run(
-      #   "curl -LsSf https://raw.githubusercontent.com/builtbyjb/tide/main/install.sh | sh",
-      #   shell=True,
-      #   executable="/bin/bash")
+      subprocess.run(
+        "curl -LsSf https://raw.githubusercontent.com/builtbyjb/tide/main/install.sh | sh",
+        shell=True,
+        executable="/bin/bash")
       progress_bar(5, total)
       print("\nSetup complete. Quick start: DEBUG=2 python3 main.py")
 
@@ -68,6 +68,11 @@ if __name__ == "__main__":
       progress_bar(4, total)
 
       # Install tide
+      subprocess.run(
+        'powershell -ExecutionPolicy ByPass -c "irm https://raw.githubusercontent.com/builtbyjb/tide/main/install.ps1 | iex"', # noqa: E501
+        shell=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.STDOUT)
       progress_bar(5, total)
       print("\nSetup complete. Quick start: set DEBUG=2 && python main.py")
 
