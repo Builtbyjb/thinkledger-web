@@ -1,11 +1,18 @@
 const menuButton = document.getElementById("menu-button");
+const sideBar = document.getElementById("side-bar");
+const closeButton = document.getElementById("close-button");
+
 
 function openMenu(){
-  console.log("This button was clicked");
+  sideBar.classList.remove("hidden");
 }
 
+function closeMenu(){
+  sideBar.classList.add("hidden");
+}
 
 menuButton.addEventListener("click", openMenu);
+closeButton.addEventListener("click", closeMenu);
 
 
 
