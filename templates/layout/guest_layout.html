@@ -1,7 +1,7 @@
 {% extends "root.html" %}
 {% block description %}{% endblock %}
 {% block layout%}
-<div class=" ">
+<div class="relative ">
   <nav class="bg-[#dceee0] w-[100%] p-8">
     <div class="flex items-center justify-between lg:max-w-[60%] md:max-w-[70%] mx-auto">
       <div class="flex justify-around gap-10">
@@ -73,13 +73,14 @@
         </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-align-justify-icon lucide-align-justify md:hidden">
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"   
+        class="lucide lucide-align-justify-icon lucide-align-justify md:hidden " id="menu-button">
         <path d="M3 12h18" />
         <path d="M3 18h18" />
         <path d="M3 6h18" />
       </svg>
     </div>
+
   </nav>
   <div class=" min-h-[50vh]">{% block body %} {% endblock %}</div>
   <footer class=" bg-[#8cb396] p-4">
@@ -103,7 +104,8 @@
             <a href="/terms-of-service" class="hover:text-gray-300 md:text-lg"> Terms of Service </a>
           </li>
           <li>
-            <a href="/privacy-policy#cookie-policy" class="hover:text-gray-300 hover:cursor-pointer md:text-lg"> Cookie
+            <a href="/privacy-policy#cookie-policy" class="hover:text-gray-300 hover:cursor-pointer md:text-lg">
+              Cookie
               Policy </a>
           </li>
         </ul>

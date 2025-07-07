@@ -1,3 +1,14 @@
+const menuButton = document.getElementById("menu-button");
+
+function openMenu(){
+  console.log("This button was clicked");
+}
+
+
+menuButton.addEventListener("click", openMenu);
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const joinWaitlistBtns = document.querySelectorAll(
     "#display-join-waitlist-form",
