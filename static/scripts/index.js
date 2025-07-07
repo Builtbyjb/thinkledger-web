@@ -1,4 +1,5 @@
-const menuButton = document.getElementById("menu-button");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.getElementById("menu-button");
 const sideBar = document.getElementById("side-bar");
 const closeButton = document.getElementById("close-button");
 
@@ -6,6 +7,9 @@ const closeButton = document.getElementById("close-button");
 function openMenu(){
   sideBar.classList.remove("hidden");
 }
+
+// one two theree
+
 
 function closeMenu(){
   sideBar.classList.add("hidden");
@@ -16,7 +20,6 @@ closeButton.addEventListener("click", closeMenu);
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
   const joinWaitlistBtns = document.querySelectorAll(
     "#display-join-waitlist-form",
   );
