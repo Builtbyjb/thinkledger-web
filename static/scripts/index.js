@@ -2,17 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("menu-button");
 const sideBar = document.getElementById("side-bar");
 const closeButton = document.getElementById("close-button");
+const body = document.getElementById("body");
+
+
 
 
 function openMenu(){
   sideBar.classList.remove("hidden");
+  body.classList.add("overflow-y-hidden");
+  console.log(body.classList);
 }
-
-// one two theree
-
 
 function closeMenu(){
   sideBar.classList.add("hidden");
+  body.classList.remove("overflow-y-hidden");
+  console.log(body.classList);
 }
 
 menuButton.addEventListener("click", openMenu);
